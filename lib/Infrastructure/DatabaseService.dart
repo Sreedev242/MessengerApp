@@ -41,11 +41,6 @@ class DataBaseService {
       'recentMesseage': '',
       'recentMsessageSender': '',
     });
-
-   
-
-
-
     // above the groupId cant be assigned since it creates along with the documentRef creation
     // so below it updates that id after creating the documentRef
 
@@ -58,25 +53,6 @@ class DataBaseService {
     userdocumentReference.update({
       'groups': FieldValue.arrayUnion(['${groupName}_${documentReference.id}'])
     });
-
-
-
-     // to add group collection in userCollection.this is to display the 
-    //  data to home screen only if user has sent any messages
-
-    //  DocumentReference documentReference2 = await userCollection.doc(UId).collection('usergroups').add({
-    //   "groupName": groupName,
-    //   'groupIcon': '',
-    //   'admin': 'you',
-    //   'members': [],
-    //   'groupId': '',
-    //   'recentMesseage': '',
-    //   'recentMsessageSender': '',
-    // });
-    // await documentReference2.update({
-    //   "groupId": documentReference2.id
-    // });
-
   }
 
   // following  the fuction is to get groupAdmin name for groupInfo screen
@@ -94,9 +70,6 @@ class DataBaseService {
       "recendmsgSender":messageDetails['sender'],
       "recentmsgTime":messageDetails['time'].toString()
     });
-
-
-
 
   }
   // following is to check if user has already joined the group or not
@@ -154,12 +127,6 @@ class DataBaseService {
   DocumentSnapshot documentSnapshot=await userdocumentReference.get();
   List<dynamic>groups=await documentSnapshot['groups'];
   if (groups.contains('${groupName}_${groupId}')) {
-
-      // below for homescreen
-      // await userdocumentReference.collection('usergroups').doc();
-
-
-
   await userdocumentReference.update({
     "groups":FieldValue.arrayRemove(["${groupName}_${groupId}"])
 
@@ -171,22 +138,6 @@ class DataBaseService {
     
   });
   }else{
-
-// below for homescreen
-  DocumentReference documentReference2 = await userCollection.doc(UId).collection('usergroups').add({
-      "groupName": groupName,
-      'groupIcon': '',
-      'admin': 'you',
-      'members': [],
-      'groupId': '',
-      'recentMesseage': '',
-      'recentMsessageSender': '',
-    });
-    await documentReference2.update({
-      "groupId": documentReference2.id
-    });
-
-
   await userdocumentReference.update({
     "groups":FieldValue.arrayUnion(["${groupName}_${groupId}"])
 

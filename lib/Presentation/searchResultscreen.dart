@@ -74,6 +74,7 @@ class _searchResultscreenState extends State<searchResultscreen> {
                     state.queryList[index]['groupName'],
                     state.queryList[index]['groupId'],
                     username['fullname'],
+                    
                   );
 
                   setState(() {
