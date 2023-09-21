@@ -1,0 +1,17 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBop6kvu9FA-NKLpGzfGfP1lWLUIBCEHx0",
+  authDomain: "messenger-app-55f3a.firebaseapp.com",
+  projectId: "messenger-app-55f3a",
+  storageBucket: "messenger-app-55f3a.appspot.com",
+  messagingSenderId: "348824134597",
+  appId: "1:348824134597:web:77e113befce7b6430fe1ac"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
