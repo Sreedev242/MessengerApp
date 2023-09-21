@@ -64,18 +64,18 @@ class DataBaseService {
      // to add group collection in userCollection.this is to display the 
     //  data to home screen only if user has sent any messages
 
-     DocumentReference documentReference2 = await userCollection.doc(UId).collection('usergroups').add({
-      "groupName": groupName,
-      'groupIcon': '',
-      'admin': 'you',
-      'members': [],
-      'groupId': '',
-      'recentMesseage': '',
-      'recentMsessageSender': '',
-    });
-    await documentReference2.update({
-      "groupId": documentReference2.id
-    });
+    //  DocumentReference documentReference2 = await userCollection.doc(UId).collection('usergroups').add({
+    //   "groupName": groupName,
+    //   'groupIcon': '',
+    //   'admin': 'you',
+    //   'members': [],
+    //   'groupId': '',
+    //   'recentMesseage': '',
+    //   'recentMsessageSender': '',
+    // });
+    // await documentReference2.update({
+    //   "groupId": documentReference2.id
+    // });
 
   }
 
