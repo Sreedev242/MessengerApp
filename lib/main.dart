@@ -7,6 +7,7 @@ import 'package:messenger_app/Application/groupBloc/group_search_bloc.dart';
 import 'package:messenger_app/Presentation/LoginScreen.dart';
 import 'package:messenger_app/Core/constants.dart';
 import 'package:messenger_app/Presentation/HomeScreen.dart';
+import 'package:messenger_app/Presentation/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -57,16 +58,21 @@ class _MyAppState extends State<MyApp> {
                 seedColor: Color.fromARGB(255, 251, 113, 7)),
             useMaterial3: true,
           ),
-          home: isloggedin ? HomeScreen() : LoginScreen()),
+          home: isloggedin ? HomeScreen() :SplashScreen()),
     );
   }
 
   Future<void> CheckLogin() async {
     final _loggedin = await SharedPreferences.getInstance();
-    final LoggedIn = _loggedin.getBool('LoggedIn') ?? false;
-    if (LoggedIn!) {
+    final LoggedIn = _loggedin.getBool('LoggedIn');
+    if (LoggedIn==false || LoggedIn==null) {
       setState(() {
-        isloggedin = LoggedIn;
+        isloggedin = false;
+      });
+      
+    }else{
+      setState(() {
+        isloggedin=true;
       });
     }
   }

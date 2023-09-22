@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger_app/Application/ProfileBloc/profile_name_bloc.dart';
-
 import 'package:messenger_app/Core/constants.dart';
 import 'package:messenger_app/Infrastructure/Sign_out.dart';
 import 'package:messenger_app/Presentation/HomeScreen.dart';

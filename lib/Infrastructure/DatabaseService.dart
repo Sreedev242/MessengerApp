@@ -10,7 +10,7 @@ class DataBaseService {
   final String? UId;
 
   DataBaseService({required this.UId});
- 
+
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('Users');
   final CollectionReference groupCollection =
@@ -41,6 +41,7 @@ class DataBaseService {
       'recentMesseage': '',
       'recentMsessageSender': '',
     });
+
     // above the groupId cant be assigned since it creates along with the documentRef creation
     // so below it updates that id after creating the documentRef
 
@@ -53,6 +54,8 @@ class DataBaseService {
     userdocumentReference.update({
       'groups': FieldValue.arrayUnion(['${groupName}_${documentReference.id}'])
     });
+
+
   }
 
   // following  the fuction is to get groupAdmin name for groupInfo screen
@@ -62,14 +65,22 @@ class DataBaseService {
     // DocumentSnapshot documentSnapshot=await documentReference.get();
     return documentSnapshot;
   }
-    // following is to send message in groups
- Future sendMessage(String groupId, Map<String,dynamic>messageDetails, )async{
- await groupCollection.doc(groupId).collection('messages').add(messageDetails);
-  await groupCollection.doc(groupId).update({
-      "recentMessage":messageDetails['message'],
-      "recendmsgSender":messageDetails['sender'],
-      "recentmsgTime":messageDetails['time'].toString()
+
+  // following is to send message in groups
+  Future sendMessage(
+    String groupId,
+    Map<String, dynamic> messageDetails,
+  ) async {
+    await groupCollection
+        .doc(groupId)
+        .collection('messages')
+        .add(messageDetails);
+    await groupCollection.doc(groupId).update({
+      "recentMessage": messageDetails['message'],
+      "recentMessageSender": messageDetails['sender'],
+      "recentmsgTime": messageDetails['time'].toString()
     });
+
 
   }
   // following is to check if user has already joined the group or not
@@ -87,19 +98,20 @@ class DataBaseService {
 
   //            following is to leave from group
 
-  Future leaveGroup({required String groupName, required String groupId}) async {
+  Future leaveGroup(
+      {required String groupName, required String groupId, String}) async {
     DocumentSnapshot userSnapshot =
         await userCollection.doc(firebaseAuth.currentUser!.uid).get();
 
     await userCollection.doc(firebaseAuth.currentUser!.uid).update({
-      "groups": FieldValue.arrayRemove([
-        "${groupName}_${groupId}"
-      ])
+      "groups": FieldValue.arrayRemove(["${groupName}_${groupId}"])
     });
     await groupCollection.doc(groupId).update({
       "members": FieldValue.arrayRemove(
           ["${userSnapshot['fullname']}_${userSnapshot['UserId']}"])
     });
+
+   
   }
   // //          following is to join the group
 
@@ -118,48 +130,35 @@ class DataBaseService {
   //   });
   // }
 
-
   // toggle group join/exit
 
-  Future toggleGroupJoin(String groupName,String groupId,String username)async{
-    DocumentReference userdocumentReference=userCollection.doc(UId);
-  DocumentReference groupdocumentRef=groupCollection.doc(groupId);
-  DocumentSnapshot documentSnapshot=await userdocumentReference.get();
-  List<dynamic>groups=await documentSnapshot['groups'];
-  if (groups.contains('${groupName}_${groupId}')) {
-  await userdocumentReference.update({
-    "groups":FieldValue.arrayRemove(["${groupName}_${groupId}"])
+  Future toggleGroupJoin(
+      String groupName, String groupId, String username) async {
+    DocumentReference userdocumentReference = userCollection.doc(UId);
+    DocumentReference groupdocumentRef = groupCollection.doc(groupId);
+    DocumentSnapshot documentSnapshot = await userdocumentReference.get();
+    List<dynamic> groups = await documentSnapshot['groups'];
+    if (groups.contains('${groupName}_${groupId}')) {
+      // below for homescreen
+      
 
-    
-  });
-   await groupdocumentRef.update({
-    "members":FieldValue.arrayRemove(["${username}_${UId}"])
-
-    
-  });
-  }else{
-  await userdocumentReference.update({
-    "groups":FieldValue.arrayUnion(["${groupName}_${groupId}"])
-
-    
-  });
-   await groupdocumentRef.update({
-    "members":FieldValue.arrayUnion(["${username}_${UId}"])
-
-    
-  });
-
-  
-
- 
-}
-
-}
+      await userdocumentReference.update({
+        "groups": FieldValue.arrayRemove(["${groupName}_${groupId}"])
+      });
+      await groupdocumentRef.update({
+        "members": FieldValue.arrayRemove(["${username}_${UId}"])
+      });
+    } else {
 
 
-
-
-
+      await userdocumentReference.update({
+        "groups": FieldValue.arrayUnion(["${groupName}_${groupId}"])
+      });
+      await groupdocumentRef.update({
+        "members": FieldValue.arrayUnion(["${username}_${UId}"])
+      });
+    }
+  }
 }
 
 // Login
