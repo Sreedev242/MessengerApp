@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:messenger_app/Infrastructure/DatabaseService.dart';
 import 'package:messenger_app/Presentation/HomeScreen.dart';
 import 'package:messenger_app/Presentation/RegisterScreen.dart';
+import 'package:messenger_app/Presentation/groupScreen.dart';
 import 'package:messenger_app/widgets/snackbar_reg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -125,7 +126,7 @@ bool _isLoading=false;
                                
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (context) {
-                            return HomeScreen();
+                            return GroupScreen();
                           }));
                             }else{
                               

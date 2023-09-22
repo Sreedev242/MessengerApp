@@ -5,6 +5,8 @@ import 'package:messenger_app/Core/constants.dart';
 import 'package:messenger_app/Infrastructure/DatabaseService.dart';
 import 'package:messenger_app/Presentation/HomeScreen.dart';
 import 'package:messenger_app/Presentation/LoginScreen.dart';
+import 'package:messenger_app/Presentation/groupInfoScreen.dart';
+import 'package:messenger_app/Presentation/groupScreen.dart';
 import 'package:messenger_app/widgets/snackbar_reg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -165,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             
       
                             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx){
-                              return HomeScreen();
+                              return GroupScreen();
                             }));
 
                           } on FirebaseAuthException catch (e) {

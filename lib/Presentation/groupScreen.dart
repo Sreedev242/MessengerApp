@@ -31,10 +31,12 @@ class _GroupScreenState extends State<GroupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileNameBloc>().add(ProfileNameEvent.started());
     final HeightX = MediaQuery.of(context).size.height;
     final Widthx = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
               onPressed: () {
@@ -89,19 +91,19 @@ class _GroupScreenState extends State<GroupScreen> {
                     ],
                   ),
                 ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (ctx) {
-                      return HomeScreen();
-                    }));
-                  },
-                  leading: Icon(
-                    Icons.home,
-                    color: AppColors.ThemeColor,
-                  ),
-                  title: Text('Home'),
-                ),
+                // ListTile(
+                //   onTap: () {
+                //     Navigator.of(context)
+                //         .push(MaterialPageRoute(builder: (ctx) {
+                //       return HomeScreen();
+                //     }));
+                //   },
+                //   leading: Icon(
+                //     Icons.home,
+                //     color: AppColors.ThemeColor,
+                //   ),
+                //   title: Text('Home'),
+                // ),
                 ListTile(
                   onTap: () {
                     Navigator.of(context)
@@ -115,7 +117,7 @@ class _GroupScreenState extends State<GroupScreen> {
                 ListTile(
                   onTap: () async {
                     signOut();
-
+    
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (ctx) {
                       return LoginScreen();

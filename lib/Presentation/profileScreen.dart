@@ -12,10 +12,11 @@ class profileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileNameBloc>().add(ProfileNameEvent.started());
     final HeightX = MediaQuery.of(context).size.height;
     final Widthx = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: AppColors.ThemeColor,
         title: Text(
@@ -71,16 +72,16 @@ class profileScreen extends StatelessWidget {
                   ),
                   title: Text('Groups'),
                 ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (ctx) {
-                      return HomeScreen();
-                    }));
-                  },
-                  leading: Icon(Icons.home, color: AppColors.ThemeColor),
-                  title: Text('Home'),
-                ),
+                // ListTile(
+                //   onTap: () {
+                //     Navigator.of(context)
+                //         .push(MaterialPageRoute(builder: (ctx) {
+                //       return HomeScreen();
+                //     }));
+                //   },
+                //   leading: Icon(Icons.home, color: AppColors.ThemeColor),
+                //   title: Text('Home'),
+                // ),
                 ListTile(
                   onTap: () async {
                     signOut();

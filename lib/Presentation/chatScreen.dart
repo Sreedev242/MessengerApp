@@ -107,6 +107,7 @@ import 'package:messenger_app/widgets/messageTile.dart';
           children: [
             Expanded(
               child: CupertinoTextField(
+               placeholder: 'Send message...',
                 minLines: 1,
             maxLines: 1000,
                 controller: ctrlMessage,

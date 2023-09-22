@@ -6,7 +6,7 @@ import 'package:messenger_app/Application/ProfileBloc/profile_name_bloc.dart';
 import 'package:messenger_app/Application/groupBloc/group_search_bloc.dart';
 import 'package:messenger_app/Presentation/LoginScreen.dart';
 import 'package:messenger_app/Core/constants.dart';
-import 'package:messenger_app/Presentation/HomeScreen.dart';
+import 'package:messenger_app/Presentation/groupScreen.dart';
 import 'package:messenger_app/Presentation/splashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                 seedColor: Color.fromARGB(255, 251, 113, 7)),
             useMaterial3: true,
           ),
-          home: isloggedin ? HomeScreen() :SplashScreen()),
+          home: isloggedin ? GroupScreen() :SplashScreen()),
     );
   }
 

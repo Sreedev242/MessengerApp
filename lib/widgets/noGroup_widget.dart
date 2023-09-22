@@ -20,7 +20,7 @@ noGroupWidget() {
               style: TextStyle(
                   fontSize: 17,
                   fontStyle: FontStyle.italic,
-                  color: Colors.grey),
+                  color: Colors.grey,),
             )
           ],
         ),
